@@ -1,0 +1,37 @@
+html{
+    background-color:#b9c8ff;
+}
+
+.container {
+    background-color: #b9c8ff;
+
+}
+
+body{
+    background-color: #b9c8ff;
+}
+
+h1 {
+    text-align: center;
+    color: blue;
+    font-size: 5rem;
+}
+
+.col-sm p {
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+#line-one {
+    margin-top: 5vh;
+    margin-bottom: 0;
+}
+
+#canvas {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+button {
+    margin-top: 5vh;
+}
