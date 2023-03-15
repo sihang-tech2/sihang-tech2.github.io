@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title></title>
+        <script src="https://d3js.org/d3.v7.min.js"></script>
+        <link rel="stylesheet" href="">
+
+        <style>
+            /* #chart{
+                background-color: aqua;
+            } */
+            .canvas {
+                background-color: aliceblue;
+            }
+            h2 {
+                font-size: 20px;
+                color: rgb(84, 81, 81);
+            }
+            #text {
+                line-height: 2;
+            }
+            .section {
+                padding-bottom: 20px;
+                padding-top: 20px;
+            }
+            #selection {
+                padding-bottom: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>MBTA Subway Crowding Dashboard Prototype</h1>
+
+        <div class="section">
+        <h2>Generated text</h2>
+        <select id="dropdown">
+            <option value="">Select where you board</option>
+        </select>
+        <p id="text">Your station corwding insights</p>
+        </div>
+
+
+        <h2>Circle packing</h2>
+        <h3 id="boardStation"></h3>
+        <div id="chart"></div>
+
+        <div class="section">
+            <h2>Area chart</h2>
+            
+            <div id="selection"></div>
+            <button class="butt">Sumbit</button>
+            <div id="route"></div>
+            <div id="dot"></div>
+        </div>
+        
+        <script src="./script.js"></script>
+    </body>
+
+
+</html>
