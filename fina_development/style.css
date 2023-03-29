@@ -1,0 +1,66 @@
+html {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #1C1E23;
+}
+
+h2 {
+    font-size: 1.75rem;
+}
+
+.highlight {
+    font-size: 1.05rem;
+    font-weight:600;
+    border-bottom: 1.5px solid #FFCE0C;
+    color: #1C1E23;
+}
+
+#insight p {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: #788093;
+}
+
+#lollipop {
+    height: 80vh;
+    width: 100%;
+    position: relative; 
+}
+
+.tooltip {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    visibility: hidden;
+    pointer-events: none;
+    background-color: rgb(98, 100, 102);
+}
+
+.timeLabels {
+    font-size: 12px;
+    color: #FFCE0C;
+}
+
+.tooltipR {
+    position: absolute;
+    background-color: blue;
+    top: 50%;
+    left: 50%;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+#radial {
+    position: relative; 
+    background-color: aliceblue;
+}
+
+.axis {
+    color: #B0B5C0;
+    stroke-dasharray: 3,5
+}
+
+.axis text {
+    fill: #1C1E23;
+    font-size: 1rem;
+    text-anchor: start;
+}
