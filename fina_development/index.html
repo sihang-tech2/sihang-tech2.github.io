@@ -3,27 +3,91 @@
     <head>
         <title>MBTA Subway Crowding Dashboard</title>
         <link rel="stylesheet" type="text/css" href="./style.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous"> 
         <script src="https://d3js.org/d3.v7.min.js"></script>
     </head>
+
     <body>
-        <div id="menu"></div>
-        <button id="butt">See reuslt</button>
 
-        <h2 id="stationName"></h2>
-        <div id="crowd"></div>
-        
-        <div id="insight">
-            <h2>Your station crowding insights</h2>
-            <p id="textOne"></p>
-            <p id="textTwo"></p>
-        </div>
+        <main>
 
-        <h2>Avoid the crowds: See which day is least crowded</h2>
-        <div id="lollipop"></div>
+            <section id="landing">
+                <h1>MBTA Subway Crowding Dashboard</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
-        <h2>Avoid the crowds: See what time is least crowded on an average weekday</h2>
-        <div id="radial"></div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
+                <div id="icon">
+                    <p id="begin">Choose your options to begin!</p>
+                    <img src="./img/icon.jpg" width=70px alt="">
+                </div>
+
+                <!-- <p style="display: inline-block; vertical-align: middle; margin-top: auto;">Here is a circle:</p>
+                <svg width="20" height="20" style="display: inline-block; vertical-align: middle; margin-right: 5px; ">
+                <circle cx="10" cy="10" r="5" stroke="black" stroke-width="1" fill="red" />
+                </svg>
+                <p style="display: inline-block; vertical-align: middle;">end of sentence</p> -->
+
+                
+
+            </section>
+
+
+            <div id="bar">
+                <div id="menu"><button id="butt" class="btn btn-outline-primary" >See reuslt</button></div>
+            </div>
+
+            
+            <section id="one" class="content">
+
+                <div id="insight">
+                    <h2 id="insight-title">Your station crowding insights</h2>
+                    
+                    <div id="insight-text">
+                        <p id="textOne" class="text"></p>
+                        <p id="textTwo" class="text"></p>
+                    </div>
+                    
+                </div>
+            </section>
+
+            <section class="content">
+                <div class="viz-wrapper">
+                    <h2>See how crowded your subway car is <br>when you boarding at <span id="stationName"></span> station</h2>
+                    <div id="crowd"></div>
+                    <div class="copy" id="crowd-copy">
+                        <p>This crowding simulation shows how crowded your subway car is based on the station and travel time you select on an average weekday.</p>
+
+                        <p>[circle] represents you, while the larger dotted circle around it represents the physical space that people typically prefer to keep between themselves and others according to some studies.</p>
+
+                        <p>The number of blue circles indicates the number of people who are on the same subway car as you when you board. The density of the circles help you understand the level of crowding in the car.</p>
+                    </div>
+                </div>
+
+            </section>
+
+            <section id="two" class="content">
+                <div class="viz-wrapper">
+                    <h2>See which day is the least crowded</h2>
+                    <div id="lollipop"></div>
+                    <div class="copy" id="lol-copy">
+                        <p>Can you travel on a different day to avoid the crowd? Use this chart to see which day is the least crowded when you boarding based on the station and travel time you select.</p>
+
+                        <p>Hover over the circles for more information.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="three" class="content">
+                <h2>See what time is the least crowded</h2>
+                <div id="radial"></div>
+            </section>
+
+            <section class="content">
+                <footer>this is the footer</footer>
+            </section>
+
+        </main>
 
 
 

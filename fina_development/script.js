@@ -9,12 +9,15 @@ function parseCsv(d) {
             line:d.line,
             direction:d.direction,
             per:+d.per,
-            level:d.level
+            level:d.level,
+            ppsm:+d.ppsm,
+            level:d.level,
+            label:d.label
         }    
     }
 }
 
-d3.csv("./data/ready_data.csv", parseCsv).then(function(data) {
+d3.csv("./data/new_ready_data.csv", parseCsv).then(function(data) {
     const submitButton = document.querySelector("#butt");
 
 // determine min and max for "per" variable
@@ -24,11 +27,11 @@ d3.csv("./data/ready_data.csv", parseCsv).then(function(data) {
     };
 
 // append svg for radial bar
-    
-    const marginR = {top: 10, right: 10, bottom: 10, left: 10};
-    const widthR = 1000;
-    const heightR = 600;
-    const innerRadius = 110;
+
+    const marginR = {top: 2, right: 10, bottom: 10, left: 5};
+    const widthR = document.querySelector("#radial").clientWidth;
+    const heightR = document.querySelector("#radial").clientHeight;
+    const innerRadius = 130;
     const outerRadius = Math.min(widthR, heightR) / 2;
 
     var svgradial = d3.select("#radial")
@@ -46,8 +49,8 @@ d3.csv("./data/ready_data.csv", parseCsv).then(function(data) {
     
     // define metrics
     const factor = 15;
-    const widthT = 9; //train width in feet
-    const longT = 48; //train long in feet
+    const widthT = 9.25; //train width in feet
+    const longT = 60; //train long in feet (estimated avaiable long, original is 65)
     const radius = 1; // human space in feet
     const outerCircle = 2; // personal space in feet
 
@@ -96,10 +99,11 @@ d3.csv("./data/ready_data.csv", parseCsv).then(function(data) {
 
 // create line filter drop-down menu
     const lineSelect = d3.select("#menu")
-        .append("select");
+        .insert('select', '#butt')
+        .attr("class", "selector");
 
     lineSelect.append("option")
-        .text("Select your line")
+        .text("Select line")
         .attr("disabled", true)
         .attr("selected", true);
 
@@ -113,31 +117,34 @@ d3.csv("./data/ready_data.csv", parseCsv).then(function(data) {
 
 // create direction filter drop-down menu
     const directionSelect = d3.select("#menu")
-    .append("select");
+    .insert('select', '#butt')
+    .attr("class", "selector");
 
     directionSelect.append("option")
     .attr("value", "")
-    .text("Select your direction")
+    .text("Select direction")
     .attr("disabled", true)
     .attr("selected", true);
 
 // create station filter drop-down menu
     const stationSelect = d3.select("#menu")
-    .append("select");
+    .insert('select', '#butt')
+    .attr("class", "selector");
 
     stationSelect.append("option")
     .attr("value", "")
-    .text("Select your station")
+    .text("Select station")
     .attr("disabled", true)
     .attr("selected", true);
 
 // create time filter drop-down menu
     const timeSelect = d3.select("#menu")
-    .append("select");
+    .insert('select', '#butt')
+    .attr("class", "selector");
 
     timeSelect.append("option")
     .attr("value", "")
-    .text("Select your travel time")
+    .text("Select travel time")
     .attr("disabled", true)
     .attr("selected", true);
 
@@ -270,13 +277,17 @@ d3.csv("./data/ready_data.csv", parseCsv).then(function(data) {
 
             // Color sacle 
 
+            var barColor = d3.scaleOrdinal()
+            .domain(["Very spacious", "Not crowded", "Moderately crowded", "Crowded", "Very crowded"])
+            .range(["#1a9641", "#a6d96a", "#FEE090", "#fdae61", "#d7191c",]);
+
             // Add bars
 
             svgradial.selectAll("path")
             .append("g")
             .data(weekdayR)
             .join("path")
-            .attr("fill", "red")
+            .attr("fill", function(d) { return barColor(d.level)})
             .attr("class", "bar")
             .attr("opacity", 0.2)
             .attr("d", d3.arc()     
@@ -287,8 +298,8 @@ d3.csv("./data/ready_data.csv", parseCsv).then(function(data) {
                 .padAngle(0.01)
                 .padRadius(2000))
             .transition() // add a transition effect
-            .duration(2000) // set the duration of the transition
-            .attr("opacity", 1)
+            .duration(1000) // set the duration of the transition
+            .attr("opacity", 0.7)
             .attr("d", d3.arc()     
                 .innerRadius(innerRadius)
                 .outerRadius(d => yr(d.per))
@@ -305,7 +316,7 @@ d3.csv("./data/ready_data.csv", parseCsv).then(function(data) {
             .attr("text-anchor", function(d) { return (xr(d.time) + xr.bandwidth() / 2 + Math.PI) % (2 * Math.PI) < Math.PI ? "end" : "start"; })
             .attr("transform", function(d) { return "rotate(" + ((xr(d.time) + xr.bandwidth() / 2) * 180 / Math.PI - 90) + ")"+"translate(" + (yr(d.per)+10) + ",0)"; })
             .append("text")
-            .text(function(d){return(d.time)})
+            .text(function(d){return(d.label)})
             .attr("transform", function(d) { return (xr(d.time) + xr.bandwidth() / 2 + Math.PI) % (2 * Math.PI) < Math.PI ? "rotate(180)" : "rotate(0)"; })
             // .style("font-size", "1rem")
             .attr("alignment-baseline", "middle")
@@ -317,22 +328,20 @@ d3.csv("./data/ready_data.csv", parseCsv).then(function(data) {
             d3.selectAll(".bar").remove();
             d3.selectAll(".timeLabels").remove();
             drawRadial();
+
             // tooltip for raidal bar
+
             d3.selectAll(".bar").on("mouseover", function(e,d) {
 
                 tooltipR.style("visibility", "visible")
-                .html(`Hi this is radial bar`)
+                .html(`<b>Station: </b>${d.station}<br> <b>Travel time: </b>${d.time}<br> <b>Passengers per car: </b>${d.per}<br> <b>Crowd level: </b>${d.level}`)
 
             d3.select(this)
-            // .attr("fill", "#0072a6")
-            // .attr("opacity", 1);
+            .attr("opacity", 1);
             }).on("mouseout", function () {
-        
-                tooltipR.style("visibility", "hidden");
-        
+                tooltipR.style("visibility", "hidden"); 
                 d3.select(this)
-                // .attr("fill", "transparent")
-                // .attr("opacity", 0.8);
+                .attr("opacity", 0.7);
             })
         })
 
@@ -349,16 +358,13 @@ d3.csv("./data/ready_data.csv", parseCsv).then(function(data) {
 
     const widthpop = document.querySelector("#lollipop").clientWidth;
     const heightpop = document.querySelector("#lollipop").clientHeight;
-    const marginpop = {top: 30, left: 120, right: 30, bottom: 30};
+    const marginpop = {top: 30, left: 120, right: 30, bottom: 5};
 
     var svgpop = d3.select("#lollipop")
         .append("svg")
             .attr("viewBox", `0 0 ${widthpop} ${heightpop}`)
             .attr("preserveAspectRatio", "xMinYMin meet");
-            // .attr("width", 500)
-            // .attr("height", 600)
-            // .append("g")
-            // .attr("transform", "translate(50, 50)");
+
 
     // draw y-axis for lollipop
     let Yaxis = d3.scaleBand()
@@ -370,14 +376,14 @@ d3.csv("./data/ready_data.csv", parseCsv).then(function(data) {
         .attr("class","axis")
         .call(d3.axisLeft(Yaxis).tickSize(0))
     .selectAll("text")
-        .attr("dx", "-6rem") // adjust the position of the text element to the right by 0.5em
+        .attr("dx", "-0.8rem") // adjust the position of the text element to the right
 
         
 
     //tooltip for lollipop
     const popTooltip = d3.select("#lollipop")
         .append("div")
-        .attr("class", "tooltip");
+        .attr("class", "tooltipL");
 
     // Finally do something with all filters selected 
 
@@ -393,7 +399,7 @@ d3.csv("./data/ready_data.csv", parseCsv).then(function(data) {
             // Create new array for drawing circles
 
             let meArray = [
-                { id: 6, name: 'Object 6', class: `me` }
+                { id: 6.53, name: 'Object 6', class: `me` }
             ];
 
             function createArrayOfObjects(num) {
@@ -406,41 +412,44 @@ d3.csv("./data/ready_data.csv", parseCsv).then(function(data) {
             return arr;
             }
 
-            let circleArray = meArray.concat(createArrayOfObjects(passengers-1))
+            // theArray = createArrayOfObjects(passengers)
+            // console.log(theArray);
+
+            let circleArray = meArray.concat(createArrayOfObjects(passengers))
             console.log(circleArray);
 
             const circleGroup = svgCrowd.append("g")
                 .attr("clsss", "circleGroup")
                 .attr("transform", "translate(" + marginC.left + "," + marginC.top + ")");
 
-            // Define a collision detection function
-            function collide(node) {
-                const r = node.getAttribute("r");
-                const x = parseFloat(node.getAttribute("cx"));
-                const y = parseFloat(node.getAttribute("cy"));
-                for (let i = 0; i < circles.length; i++) {
-                if (circles[i] != node) {
-                    const r2 = circles[i].getAttribute("r");
-                    const x2 = parseFloat(circles[i].getAttribute("cx"));
-                    const y2 = parseFloat(circles[i].getAttribute("cy"));
-                    const dx = x - x2;
-                    const dy = y - y2;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
-                    if (distance < r + r2 + 5) {
-                    return true;
-                    }
-                }
-                }
-                return false;
-            }
+            // // Define a collision detection function
+            // function collide(node) {
+            //     const r = node.getAttribute("r");
+            //     const x = parseFloat(node.getAttribute("cx"));
+            //     const y = parseFloat(node.getAttribute("cy"));
+            //     for (let i = 0; i < circles.length; i++) {
+            //     if (circles[i] != node) {
+            //         const r2 = circles[i].getAttribute("r");
+            //         const x2 = parseFloat(circles[i].getAttribute("cx"));
+            //         const y2 = parseFloat(circles[i].getAttribute("cy"));
+            //         const dx = x - x2;
+            //         const dy = y - y2;
+            //         const distance = Math.sqrt(dx * dx + dy * dy);
+            //         if (distance < r + r2 + 5) {
+            //         return true;
+            //         }
+            //     }
+            //     }
+            //     return false;
+            // }
             
             // Append circles to the group element
 
             var circleColor = d3.scaleOrdinal()
             .domain(["me", "other"])
-            .range(["#bc3f67", "#0369a0"]);
+            .range(["#39B6C0", "#004D79"]);
 
-            // Try d3 force
+            //d3 force
 
             var circleMin = d3.min(circleArray, function(d) { return d.id; });
             var circleMax = d3.max(circleArray, function(d) { return d.id; });
@@ -451,7 +460,8 @@ d3.csv("./data/ready_data.csv", parseCsv).then(function(data) {
 
             function assignRandomVerticalValues(arr) {
                 arr.forEach(function(obj) {
-                  obj.vertical = Math.floor(Math.random() * 3) + 1;
+                    randomNumber = Math.floor(Math.random() * 4) + 1;
+                    obj.vertical = randomNumber + Math.random();
                 });
             }
 
@@ -460,13 +470,13 @@ d3.csv("./data/ready_data.csv", parseCsv).then(function(data) {
             console.log(circleArray);
 
             yScale = d3.scaleLinear()
-            .domain([1,3])
-            .range([(radius*factor) *2, heightC-(radius*factor) *2 ]);
+            .domain([1,5])
+            .range([(radius*factor) *2 + 10, heightC-(radius*factor) *2 - 10 ]);
 
             console.log(xScale(circleMax));
 
             var simulation = d3.forceSimulation(circleArray)
-                .force("repel", d3.forceManyBody().strength(-5))
+                .force("repel", d3.forceManyBody().strength(-10))
                 .force("x", d3.forceX().x(function(d) {
                     return xScale(d.id);}))
                 .force("y", d3.forceY().y(function(d) {
@@ -498,7 +508,7 @@ d3.csv("./data/ready_data.csv", parseCsv).then(function(data) {
             simulation.on("end", function () {
                 const redCircle = d3.selectAll(".circles")
             .filter(function() {
-                return d3.select(this).style("fill") === "rgb(188, 63, 103)";
+                return d3.select(this).style("fill") === "rgb(57, 182, 192)";
             })
             .node();
 
@@ -519,6 +529,11 @@ d3.csv("./data/ready_data.csv", parseCsv).then(function(data) {
 
         }
 
+        function addStationName () {
+            const stationName = `${selectedData[0].station}`
+            d3.select("#stationName").html(stationName);
+        }
+
 
         function drawText () {
             //Filter weekday average data
@@ -529,7 +544,7 @@ d3.csv("./data/ready_data.csv", parseCsv).then(function(data) {
             const insightTextOne = `If you’re traveling <span class="highlight">${weekday[0].direction}</span> on the <span class="highlight">${weekday[0].line}</span> at <span class="highlight">${weekday[0].station}</span> station between <span class="highlight">${weekday[0].time}</span> on an average weekday, our data suggests that it should feel <span class="highlight">${weekday[0].level}</span> when you board the train.`
             d3.select("#textOne").html(insightTextOne);
                 
-            const insightTextTwo = `About <span class="highlight">${weekday[0].boarding}</span> people will likely be waiting to board with you, and around <span class="highlight">${weekday[0].per}</span> people per car leaving from ${weekday[0].station} station to the next station.`
+            const insightTextTwo = `About <span class="highlight">${weekday[0].boarding}</span> people will likely be waiting to board with you, and around <span class="highlight">${weekday[0].per}</span> people in addition to <span id="me">you</span> per car leaving from ${weekday[0].station} station to the next station.`
             d3.select("#textTwo").html(insightTextTwo);
         };
 
@@ -550,6 +565,12 @@ d3.csv("./data/ready_data.csv", parseCsv).then(function(data) {
             .range([ marginpop.top-80, heightpop-(marginpop.bottom) ])
             .domain(week.map(function(d) { return d.day; }))
             .padding(1);
+
+            // color circles 
+
+            var lolColor = d3.scaleOrdinal()
+            .domain(["Very spacious", "Not crowded", "Moderately crowded", "Crowded", "Very crowded"])
+            .range(["#1a9641", "#a6d96a", "#FEE090", "#fdae61", "#d7191c",]);
 
             // Lines
             var line = svgpop.selectAll(".line")
@@ -590,7 +611,7 @@ d3.csv("./data/ready_data.csv", parseCsv).then(function(data) {
             .attr("cx", function(d) { return x(d.per); })
             .attr("cy", function(d) { return y(d.day); })
             .attr("r", "15")
-            .style("fill", "#69b3a2");
+            .style("fill", function(d) { return lolColor(d.level)});
             // .attr("stroke", "black");
             circle
             .enter()
@@ -599,7 +620,7 @@ d3.csv("./data/ready_data.csv", parseCsv).then(function(data) {
                 .attr("cx", function(d) { return x(d.per); })
                 .attr("cy", function(d) { return y(d.day); })
                 .attr("r", "15")
-                .style("fill", "#69b3a2");
+                .style("fill", function(d) { return lolColor(d.level)});
                 // .attr("stroke", "black");
             circle.exit().remove();
 
@@ -612,6 +633,7 @@ d3.csv("./data/ready_data.csv", parseCsv).then(function(data) {
             d3.selectAll(".outer").remove();
             
             drawCircles();
+            addStationName ();
 
 
             drawText()
@@ -629,19 +651,26 @@ d3.csv("./data/ready_data.csv", parseCsv).then(function(data) {
                 popTooltip.style("visibility", "visible")
                 .style("left", `${x}px`)
                 .style("top", `${y}px`)
-                .html(`Hi`)
+                .html(`<b>Station: </b>${d.station}<br> <b>Travel time: </b>${d.time}<br> <b>Passengers per car: </b>${d.per}<br> <b>Crowd level: </b>${d.level}`)
 
             d3.select(this)
-            .attr("fill", "#0072a6")
-            .attr("opacity", 1);
+            .attr("stroke", "#494F5C")
+            .attr("stroke-width", "3");
             }).on("mouseout", function () {
         
                 popTooltip.style("visibility", "hidden");
         
                 d3.select(this)
-                .attr("fill", "transparent")
-                .attr("opacity", 0.8);
+                .attr("stroke", "none");
             })
+            
+            // Hide landing section 
+            document.getElementById("landing")
+            .style.display = "none";
+
+            // d3.selectAll(".content")
+            // .style.visibility = "visible";
+
 
         });
 
