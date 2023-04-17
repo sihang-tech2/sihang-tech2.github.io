@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 26.5.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 508 19" style="enable-background:new 0 0 508 19;" xml:space="preserve">
+<style type="text/css">
+	.st0{font-family:'Helvetica';}
+	.st1{font-size:12px;}
+	.st2{fill:#A6D96A;}
+	.st3{fill:#FEE090;}
+	.st4{fill:#FDAE61;}
+	.st5{fill:#D7191C;}
+	.st6{fill:#1A9641;}
+</style>
+<g id="Layer_1">
+	<text transform="matrix(1 0 0 1 21.4443 13.519)" class="st0 st1">Very spacious</text>
+	<text transform="matrix(1 0 0 1 124.6911 13.5193)" class="st0 st1">Not crowded</text>
+	<text transform="matrix(1 0 0 1 221.7788 13.5193)" class="st0 st1">Moderately crowded</text>
+	<text transform="matrix(1 0 0 1 352.9714 13.5193)" class="st0 st1">Crowded</text>
+	<text transform="matrix(1 0 0 1 433.8465 13.5193)" class="st0 st1">Very crowded</text>
+	<rect x="107.2" y="2.3" class="st2" width="14" height="14"/>
+	<rect x="204.3" y="2.3" class="st3" width="14" height="14"/>
+	<rect x="335.5" y="2.3" class="st4" width="14" height="14"/>
+	<rect x="416.4" y="2.3" class="st5" width="14" height="14"/>
+</g>
+<g id="Layer_2">
+	<rect x="4" y="2.3" class="st6" width="14" height="14"/>
+</g>
+</svg>

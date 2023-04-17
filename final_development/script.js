@@ -1,3 +1,12 @@
+// landing page animations
+
+let tl = gsap.timeline({ defaults: { ease: "Power3.easeOut", duration: 2}} ); 
+
+tl.to("#heading", { 'clip-path': 'polygon(0% 100%, 100% 100%, 100% 0%, 0% 0%)', opacity: 1, y: 0, duration: 3})
+    .to(".intro-text", { opacity: 1, y: 0,}, "-=3")
+    .to("#menu", { opacity: 1, y: 0,}, "-=2.5")
+    .to("#begin", { 'clip-path': 'polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%)', opacity:1, duration: 2}, "-=1.5");
+
 function parseCsv(d) {
     {
         return {
@@ -627,6 +636,13 @@ d3.csv("./data/new_ready_data.csv", parseCsv).then(function(data) {
             document.getElementById("landing")
             .style.display = "none";
 
+
+            var hideElements = document.querySelectorAll(".hide");
+
+            hideElements.forEach(function(element) {
+                element.style.visibility = "visible";
+            });
+
         });
 
 
@@ -846,6 +862,7 @@ d3.csv("./data/new_ready_data.csv", parseCsv).then(function(data) {
 
     }
 
+
     // Draw trip chart 
 
     function drawTrip (data) {
@@ -897,7 +914,6 @@ d3.csv("./data/new_ready_data.csv", parseCsv).then(function(data) {
             .attr("stroke-width", 1)
             .attr("stroke-dasharray", "2,2")
             .attr("transform", "translate(50, 50)");
-
 
         const update = (newData) => {
             
@@ -1021,10 +1037,4 @@ d3.csv("./data/new_ready_data.csv", parseCsv).then(function(data) {
         return update;
 
     };
-
-
-
-
-
-
 })

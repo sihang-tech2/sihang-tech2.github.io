@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 26.5.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 508 19" style="enable-background:new 0 0 508 19;" xml:space="preserve">
+<style type="text/css">
+	.st0{font-family:'Helvetica';}
+	.st1{font-size:12px;}
+	.st2{fill:#1A9641;}
+	.st3{fill:#A6D96A;}
+	.st4{fill:#FEE090;}
+	.st5{fill:#FDAE61;}
+	.st6{fill:#D7191C;}
+</style>
+<text transform="matrix(1 0 0 1 21.4443 13.519)" class="st0 st1">Very spacious</text>
+<circle class="st2" cx="11" cy="9.3" r="7.5"/>
+<text transform="matrix(1 0 0 1 124.6911 13.5193)" class="st0 st1">Not crowded</text>
+<circle class="st3" cx="114.2" cy="9.3" r="7.5"/>
+<text transform="matrix(1 0 0 1 221.7788 13.5193)" class="st0 st1">Moderately crowded</text>
+<circle class="st4" cx="211.3" cy="9.3" r="7.5"/>
+<text transform="matrix(1 0 0 1 352.9714 13.5193)" class="st0 st1">Crowded</text>
+<circle class="st5" cx="342.5" cy="9.3" r="7.5"/>
+<text transform="matrix(1 0 0 1 433.8465 13.5193)" class="st0 st1">Very crowded</text>
+<circle class="st6" cx="423.4" cy="9.3" r="7.5"/>
+</svg>

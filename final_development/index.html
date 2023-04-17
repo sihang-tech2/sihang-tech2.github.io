@@ -5,6 +5,7 @@
         <link rel="stylesheet" type="text/css" href="./style.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous"> 
         <script src="https://d3js.org/d3.v7.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js" integrity="sha512-cOH8ndwGgPo+K7pTvMrqYbmI8u8k6Sho3js0gOqVWTmQMlLIi6TbqGWRTpf1ga8ci9H3iPsvDLr4X7xwhC/+DQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     </head>
 
     <body>
@@ -12,12 +13,22 @@
         <main>
 
             <section id="landing" >
-                <h1>MBTA Subway Crowding Dashboard</h1>
-                <p class="intro-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <h1 id="heading">MBTA Subway Crowding Dashboard</h1>
+                <p class="intro-text">This interactive dashboard provides you with crowding information for the Massachusetts Bay Transportation Authority (MBTA) subway lines.</p>
 
-                <p class="intro-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <p class="intro-text">Navigate the dashboard to discover your station's crowding information at various times, on different days of the week, and view the crowding simulation for your subway car.</p>
 
-                <p id="begin">↓ Choose your options below to begin ↓</p>
+                <p class="intro-text">As you investigate a segment, feel free to examine other stations by utilizing the drop-down menus located above.</p>
+
+                <p id="begin">
+
+                    <span class="title-word title-word-1">Make</span> 
+                    <span class="title-word title-word-2">Your</span> 
+                    <span class="title-word title-word-3">Selections</span> 
+                    <span class="title-word title-word-4">to</span> 
+                    <span class="title-word title-word-4">begin!</span> 
+                
+                </p>
 
                 </div>
 
@@ -28,7 +39,7 @@
                 <div id="menu"><button id="butt" class="btn btn-outline-primary" >See reuslt</button></div>
             </div>
 
-            <section id="one" class="content">
+            <section id="one" class="content hide">
 
                 <div id="insight">
                     <h2 id="insight-title">Your station crowding insights</h2>
@@ -41,14 +52,14 @@
                 </div>
             </section>
 
-            <section class="content">
+            <section class="content hide">
                 <div class="viz-wrapper">
-                    <h2>See how crowded your subway car is <br>when you boarding at <span id="stationName"></span> station</h2>
+                    <h2 id="title">See how crowded your subway car is <br>when you boarding at <span id="stationName"></span> station</h2>
                     <div id="crowd"></div>
                     <div class="copy" id="crowd-copy">
                         <p>This crowding simulation shows how crowded your subway car is based on the station and travel time you select on an average weekday.</p>
 
-                        <p><span style="color: #39B6C0; font-weight: bolder;">Green circle</span> represents you, while the larger dotted circle around it represents the physical space that people typically prefer to keep between themselves and others according to some studies.</p>
+                        <p><span style="color: #39B6C0; font-weight: bolder;">Green circle</span> represents you, while the larger dotted circle around it represents the physical space that people typically prefer to keep between themselves and others according to <a href="https://www.europarc.org/communication-skills/pdf/Personal%20Space.pdf" target="_blank">some studies.</a></p>
 
                         <p>The number of <span style="color: #004D79; font-weight: bolder;">blue circles</span> indicates the number of people who are on the same subway car as you when you board. The density of the circles help you understand the level of crowding in the car.</p>
                     </div>
@@ -56,40 +67,45 @@
 
             </section>
 
-            <section id="two" class="content">
+            <section id="two" class="content hide">
                 <div class="viz-wrapper">
-                    <h2>See which day is the least crowded</h2>
+                    <h2 id="title">See which day is the least crowded</h2>
+                    <div class="legend"><p style="text-align: center;"><img src="./img/lol-legned.svg" height=22px alt=""></p></div>
                     <div id="lollipop"></div>
                     <div class="copy" id="lol-copy">
-                        <p>Can you travel on a different day to avoid the crowd? Use this chart to see which day is the least crowded when you boarding based on the station and travel time you select.</p>
-
-                        <p>Hover over the circles for more information.</p>
+                        <p>Can you travel on a different day to avoid the crowd? Use this chart to see which day is the least crowded when you boarding, based on the station and travel time you select. Hover over the circles for more information.</p>
                     </div>
                 </div>
             </section>
 
-            <section id="three" class="content">
-                <h2>See what time is the least crowded</h2>
+            <section id="three" class="content hide">
+                <h2 id="title">See what time is the least crowded</h2>
+                <div class="legend"><p style="text-align: center;"><img src="./img/bar-legned.svg" height=22px alt=""></p></div>
                 <div id="radial"></div>
                 <div class="copy" id="radial-copy">
                     <p>Use this chart to see what time is the least crowded when you boarding based on the station you select on an average weekday. Hover over for more information.</p>
                 </div>
             </section>
 
-            <section id="trip-intro" class="content">
-                <p>Knowing the crowd levels on your trip, not just when boarding a subway, can make a big difference in in planning an efficient journey. </p>
+            <section id="trip-intro" class="content hide">
+                <p>Knowing the crowd levels on your trip, not just when boarding a subway, can make a big difference in planning an efficient trip. </p>
                 <p>Continue scrolling to explore the Trip Crowd Level Dashboard and see how the crowd levels vary throughout your trip.</p>
             </section>
             
 
-            <section id="trip-chart" class="content">
+            <section id="trip-chart" class="content hide">
                 
                 <div id="trip-bar">
                     <div id="trip-menu">
                         <div id="trip-text">
                             <p id="black">To begin, select a line, direction, travel time, and your departure and destination stations.</p>
                             <p>The circles and links are color-coded to represent the crowd level when you board at each station and during the trip to the next station.</p> 
-                            <p>The horizontal bars indicate the average number of passengers per car leaving from the station on a typical weekday.</p>
+                            <p id="small-bottom">The horizontal bars indicate the average number of passengers per car leaving from the station on a typical weekday.</p>
+                            <div style="margin-bottom: 15%; margin-top: 5%;">
+                                <img src="./img/t-one.svg" width="100%" alt="">
+                                <img src="./img/t-two.svg" width="100%" alt="">
+                                <img src="./img/t-three.svg" width="100%" alt="">
+                            </div>
                         </div>
                     </div>
                     <div id="buttTrip-div">
@@ -100,15 +116,13 @@
                 <div id="trip"></div>
             </section>
 
-            <section id="footer" class="content">This is the end of the website</section>
+            <section id="footer" class="content">
+                <p>By Sihang Sun | sun.siha@northeastern.edu</p>
+                <p>Data: <a href="https://korbato.com/" target="_blank">Korbato</a></p>
+            </section>
 
 
         </main>
-
-
-
-
-
 
 
         <script src="./script.js"></script>

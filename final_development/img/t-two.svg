@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 26.5.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 200 20" style="enable-background:new 0 0 200 20;" xml:space="preserve">
+<style type="text/css">
+	.st0{font-family:'Helvetica';}
+	.st1{font-size:12px;}
+	.st2{fill:#FEE090;}
+	.st3{fill:#FDAE61;}
+</style>
+<g id="Layer_1">
+</g>
+<g id="Layer_2">
+	<g>
+		<text transform="matrix(1 0 0 1 18.4222 12.7471)" class="st0 st1">Moderately crowded</text>
+		<text transform="matrix(1 0 0 1 149.6148 12.7471)" class="st0 st1">Crowded</text>
+		<rect x="1" y="1.5" class="st2" width="14" height="14"/>
+		<rect x="132.2" y="1.5" class="st3" width="14" height="14"/>
+	</g>
+</g>
+</svg>
