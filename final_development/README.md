@@ -1,5 +1,5 @@
 # MBTA Subway Crowding Dashboard
-author: Sihang Sun
+Author: Sihang Sun
 
 <img src="./img/banner.jpg" alt="Banner" height="300"/>
 
