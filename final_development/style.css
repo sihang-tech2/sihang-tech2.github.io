@@ -31,7 +31,6 @@ main {
     scroll-snap-stop: always;
     background-color: #F1F3F5;
     padding-top: 6%;
-    /* padding-top: 5%; */
 }
 
 #trip-intro {
@@ -406,4 +405,9 @@ h2 {
 
 #small-bottom {
     margin-bottom: 0.6rem;
+}
+
+.hover {
+    color: #165C96;
+    font-weight: bolder;
 }
