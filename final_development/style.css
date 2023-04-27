@@ -57,12 +57,11 @@ h2 {
 }
 
 #begin {
-    /* margin-top: 10%; */
     text-align: center;
     margin-bottom: 0;
     font-size: large;
     position: absolute;
-    bottom: 15%;
+    bottom: 21%;
     left: 50%;
     transform: translateX(-50%);
     font-size: 1.8rem;
@@ -135,6 +134,16 @@ h2 {
     top: 0px;
     background-color:#f1f3f5;
     padding-bottom: 5%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#bar-start {
+    height: 8vh;
+    overflow: hidden;
+    position: relative;
+    top: -22%;
+    background-color:#f1f3f5;
     margin-left: auto;
     margin-right: auto;
 }
@@ -314,7 +323,7 @@ h2 {
     text-decoration: underline;
 }
 
-#trip-text {
+.trip-text {
     font-size: 0.8rem;
     color: #81848a;
     text-align: left;
@@ -342,11 +351,13 @@ h2 {
 
 #buttTrip-div {
     margin-top: 5%;
+    margin-bottom: 10%;
 }
 
 #black {
     color: #1C1E23;
     margin-bottom: 10%;
+    font-size: 0.8rem;
 }
 
 .hide {
@@ -404,7 +415,7 @@ h2 {
 }
 
 #small-bottom {
-    margin-bottom: 0.6rem;
+    margin-bottom: 1.5rem;
 }
 
 .hover {

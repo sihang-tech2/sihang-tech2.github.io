@@ -643,6 +643,10 @@ d3.csv("./data/new_ready_data.csv", parseCsv).then(function(data) {
                 element.style.visibility = "visible";
             });
 
+            // Handle menue position 
+            const MenuBar = document.getElementById('bar-start');
+            MenuBar.setAttribute('id', 'bar');
+
         });
 
 
